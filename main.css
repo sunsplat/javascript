@@ -7,6 +7,12 @@ html {
   box-sizing: inherit;
 }
 
+h1, h2, h3, h4 {
+  color: #fff;
+  font-weight: bold;
+}
+
+
 .content:before {
   content: "";
   position: fixed;
@@ -17,7 +23,7 @@ html {
   display: block;
   background-image: url('images/bg-image.jpg');
   /* this margin gets rid of the blur fade on image edges */
-  margin: -5px -10px -10px -10px;
+  margin: -10px;
   /* this width is over 100% because of above margin values */
   width: 110%;
   height: 800px;
@@ -55,6 +61,7 @@ html {
 }
 
 p {
-	color: #fff;
 	font-size: 24px;
+  color: #fff;
 }
+
