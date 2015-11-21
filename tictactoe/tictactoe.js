@@ -21,6 +21,18 @@
 // }
 // http://playtictactoe.org/
 
+//Sets each variable to the text value in the cell
+var a1 = $('#a1').text();
+var a2 = $('#a2').text();
+var a3 = $('#a3').text();
+var b1 = $('#b1').text();
+var b2 = $('#b2').text();
+var b3 = $('#b3').text();
+var c1 = $('#c1').text();
+var c2 = $('#c2').text();
+var c3 = $('#c3').text();
+
+// Create a hash?
 var cells = 
 [
   '#a1',
@@ -34,7 +46,17 @@ var cells =
   '#c3'
 ]
 
-var wins = [[a1, a2, a3], [b1, b2, b3], [c1, c2, c3], [a1, b2, c3], [a3, b2, c1], [a1, b1, c1], [a2, b2, c2], [a3, b3, c3]]
+// Possible wins
+var wins = [
+  [a1, a2, a3], 
+  [b1, b2, b3], 
+  [c1, c2, c3], 
+  [a1, b2, c3], 
+  [a3, b2, c1], 
+  [a1, b1, c1], 
+  [a2, b2, c2], 
+  [a3, b3, c3]
+]
 
 
   $(document).ready(function(){
@@ -52,17 +74,26 @@ var wins = [[a1, a2, a3], [b1, b2, b3], [c1, c2, c3], [a1, b2, c3], [a3, b2, c1]
     }
   });
   
-function computerMove() {
-  if ($('#b2').text !== "X" || $('#b2').text !== "O") {
+// Checks if the cell in the grid is empty or not
+function isCellEmpty(value) {
+  if (value.val() !== "O" && value.val() !== "X") {
+    return value;
+  }
+}
+
+// Where should the computer move? How should it move?
+function computerMove(value) {
+  if (value) {
     $('#b2').html('O');
-  } else if ($('#a1').text !== "X" || $('#a1').text !== "O") {
+  } else if (a1 !== "X" || a1 !== "O") {
     $('#a1').html('O');
-  } else if ($('#a2').text !== "X" || $('#a2').text !== "O") {
+  } else if (a2 !== "X" || a2 !== "O") {
     $('#a2').html('O');
     
   }
 }
  
+// After each move, the checkWin function should run to see if the player or computer has won.
 function checkWin() {
   if ($('#a1').text() == 'X' && $('#a2').text() == 'X' && $('#a3').text() == 'X') {
     alert('You won!');
@@ -71,6 +102,7 @@ function checkWin() {
   }
 }
 
+// Clears the board after a game ends. Resets
 function newGame() {
   $('#grid.cell').val('');
 } 
