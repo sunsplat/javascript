@@ -1,0 +1,36 @@
+html {
+	box-sizing: border-box;
+}
+
+* {
+	box-sizing: inherit;
+}
+
+.header {
+  text-align: center;
+}
+
+.grid {
+  width: 500px;
+  margin: auto auto;
+  color: #fff;
+}
+
+.grid div {
+  text-align: center;
+}
+
+.row {
+  background-color: #330033;
+  height: 25vh;
+  border: 1px solid #fff;
+}
+
+.middle-column {
+  border-left: 1px solid #fff;
+  border-right: 1px double #fff;
+}
+
+.cell {
+  height: 100%;
+}
