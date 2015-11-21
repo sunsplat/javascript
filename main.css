@@ -7,17 +7,28 @@ html {
   box-sizing: inherit;
 }
 
+h1, h2, h3, h4 {
+  color: #fff;
+  font-weight: bold;
+}
+
+
 .content:before {
   content: "";
   position: fixed;
   left: 0;
   right: 0;
   z-index: -1;
-  
+  /* for the background image */
   display: block;
-  background-image: url('C:\\Sites\\XAMPP\\htdocs\\codeigniter\\assets\\images\\bg-image.jpg');
-  width: 100%;
+  background-image: url('images/bg-image.jpg');
+  /* this margin gets rid of the blur fade on image edges */
+  margin: -10px;
+  /* this width is over 100% because of above margin values */
+  width: 110%;
   height: 800px;
+  background-size: cover;
+  background-repeat: no-repeat;
   
   -webkit-filter: blur(5px);
   -moz-filter: blur(5px);
@@ -40,11 +51,17 @@ html {
 	margin: 5% 10% 5% 10%;
 	padding: 5% 10%;
 	height: 500px;
-	overflow-x: hidden;
-	overflow-y: scroll;
+  overflow-x: hidden;
+	overflow-y: auto;
+  z-index: 10;
+  -webkit-box-shadow: inset 0 0 30px #000, 3px 2px 33px 16px rgba(0,0,0,0.3);
+  -moz-box-shadow: 3px 2px 33px 16px rgba(0,0,0,0.3);
+  box-shadow: 3px 2px 33px 16px rgba(0,0,0,0.3);
+  
 }
 
 p {
-	color: #fff;
 	font-size: 24px;
+  color: #fff;
 }
+
