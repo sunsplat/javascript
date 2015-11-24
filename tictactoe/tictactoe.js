@@ -26,10 +26,10 @@ var wins = [
   [a3, b3, c3]
 ]
 
+var turn = 1;
 
 $(document).ready(function(){
     // initial turn
-    var turn = 0;
 
     // Switches turns between 'X' and 'O'
     $('.cell').click(function() {
@@ -57,7 +57,7 @@ $(document).ready(function(){
         var c2 = $('#c2').text();
         var c3 = $('#c3').text();
 
-        console.log(c3);
+        console.log(turn);
 
         if (a1 == letter && a2 == letter && a3 == letter) {
             alert('You won!');
@@ -67,18 +67,17 @@ $(document).ready(function(){
             newGame();
         } else if (c1 == letter && c2 == letter && c3 == letter) {
             alert('You won!');
-            reset();
+            newGame();
         } else if (a1 == letter && b2 == letter && c3 == letter) {
             alert('You won!');
-            reset();
+            newGame();
         } else if (a3 == letter && b2 == letter && c1 == letter) {
             alert('You won!');
-            reset();
+            newGame();
+        } else if (turn == 9) {
+            alert("It's a draw");
+            newGame();
         }
-        // } else {
-        //     alert("It's a draw");
-        //     reset();
-        // }
     }
 
     // Where should the computer move? How should it move?
@@ -93,9 +92,10 @@ $(document).ready(function(){
       }
     }
 
-    // Clears the board after a game ends. Resets
+    // Clears the board after a game ends. Resets turn to start at 0.
     function newGame() {
-      $('#grid.cell').html('');
+      $('.cell').html('');
+      turn = 0;
     }
 
 });
