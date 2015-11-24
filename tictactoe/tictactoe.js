@@ -1,5 +1,21 @@
 // http://playtictactoe.org/
 
+/* Written by Ellen Sun
+ *
+ * @since November 24, 2015
+ *
+ * Simple Tic Tac Toe game with AI
+ *
+ * Started with grabbing .text values from each individual cells
+ * Created an onClick event for clicked cell to display and X
+ * Wrote checkWin function for all possible winning scenerios
+ * Created a variable to store X and O to pass to checkWin
+ * Created an array of cells for possible saving of values for computer moves
+ * Created an array of winning arrays for computer to determine next move
+ * Turn variable to store the number of turns in a game, increment by 1
+ * Switch between X and O depending on turn number. 
+ */
+
 // Create a hash?
 var cells =
 [
