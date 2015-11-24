@@ -67,61 +67,60 @@ $(document).ready(function(){
     $('.cell').click(function() {
         if (turn % 2 === 0) {
           $(this).html('X');
-          checkWin();
+          checkWin('X');
         } else {
           $(this).html('O');
-          checkWin();
+          checkWin('O');
         }
 
         turn++;
     });
 
-// Checks if the cell in the grid is empty or not
-function isCellEmpty(value) {
-  if (value.val() !== "O" && value.val() !== "X") {
-    return value;
-  }
-}
-
-// Where should the computer move? How should it move?
-function computerMove(value) {
-  if (value) {
-    $('#b2').html('O');
-  } else if (a1 !== "X" || a1 !== "O") {
-    $('#a1').html('O');
-  } else if (a2 !== "X" || a2 !== "O") {
-    $('#a2').html('O');
-
-  }
-}
-
-// After each move, the checkWin function should run to see if the player or computer has won.
-function checkWin() {
-    if (a1 == 'X' && a2 == 'X' && a3 == 'X') {
-        alert('You won!');
-        reset();
-    } else if (b1 == 'X' && b2 == 'X' && b3 == 'X') {
-        alert('You won!');
-        reset();
-    } else if (c1 == 'X' && c2 == 'X' && c3 == 'X') {
-        alert('You won!');
-        reset();
-    } else if (a1 == 'X' && b2 == 'X' && c3 == 'X') {
-        alert('You won!');
-        reset();
-    } else if (a3 == 'X' && b2 == 'X' && c1 == 'X') {
-        alert('You won!');
-        reset();
-    // } else {
-    //     winCheck();
-    //     check2();
-    //     drawCheck();
+    // Checks if the cell in the grid is empty or not
+    function isCellEmpty(value) {
+      if (value.val() !== "O" && value.val() !== "X") {
+        return value;
+      }
     }
-}
 
-// Clears the board after a game ends. Resets
-function newGame() {
-  $('#grid.cell').html('');
-}
+    // Where should the computer move? How should it move?
+    function computerMove(value) {
+      if (value) {
+        $('#b2').html('O');
+      } else if (a1 !== "X" || a1 !== "O") {
+        $('#a1').html('O');
+      } else if (a2 !== "X" || a2 !== "O") {
+        $('#a2').html('O');
+
+      }
+    }
+
+    // After each move, the checkWin function should run to see if the player or computer has won.
+    function checkWin(letter) {
+        if (a1 == letter && a2 == letter && a3 == letter) {
+            alert('You won!');
+            reset();
+        } else if (b1 == letter && b2 == letter && b3 == letter) {
+            alert('You won!');
+            reset();
+        } else if (c1 == letter && c2 == letter && c3 == letter) {
+            alert('You won!');
+            reset();
+        } else if (a1 == letter && b2 == letter && c3 == letter) {
+            alert('You won!');
+            reset();
+        } else if (a3 == letter && b2 == letter && c1 == letter) {
+            alert('You won!');
+            reset();
+        } else {
+            alert("It's a draw");
+            reset();
+        }
+    }
+
+    // Clears the board after a game ends. Resets
+    function newGame() {
+      $('#grid.cell').html('');
+    }
 
 });
