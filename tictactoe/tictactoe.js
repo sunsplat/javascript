@@ -33,10 +33,10 @@ var c2 = $('#c2').text();
 var c3 = $('#c3').text();
 
 // Create a hash?
-var cells = 
+var cells =
 [
   '#a1',
-  '#a2', 
+  '#a2',
   '#a3',
   '#b1',
   '#b2',
@@ -48,32 +48,34 @@ var cells =
 
 // Possible wins
 var wins = [
-  [a1, a2, a3], 
-  [b1, b2, b3], 
-  [c1, c2, c3], 
-  [a1, b2, c3], 
-  [a3, b2, c1], 
-  [a1, b1, c1], 
-  [a2, b2, c2], 
+  [a1, a2, a3],
+  [b1, b2, b3],
+  [c1, c2, c3],
+  [a1, b2, c3],
+  [a3, b2, c1],
+  [a1, b1, c1],
+  [a2, b2, c2],
   [a3, b3, c3]
 ]
 
 
-  $(document).ready(function(){
+$(document).ready(function(){
+    // initial turn
+    var turn = 0;
 
-  $('.cell').click(function() {
-    if ($(this).text != "") {
-      $(this).html('X');
-    }
-    checkWin();
-    if (true) {
-      console.log("game over");
-      newGame();
-    } else {
-      computerMove();
-    }
-  });
-  
+    // Switches turns between 'X' and 'O'
+    $('.cell').click(function() {
+        if (turn % 2 === 0) {
+          $(this).html('X');
+          checkWin();
+        } else {
+          $(this).html('O');
+          checkWin();
+        }
+
+        turn++;
+    });
+
 // Checks if the cell in the grid is empty or not
 function isCellEmpty(value) {
   if (value.val() !== "O" && value.val() !== "X") {
@@ -89,22 +91,37 @@ function computerMove(value) {
     $('#a1').html('O');
   } else if (a2 !== "X" || a2 !== "O") {
     $('#a2').html('O');
-    
+
   }
 }
- 
+
 // After each move, the checkWin function should run to see if the player or computer has won.
 function checkWin() {
-  if ($('#a1').text() == 'X' && $('#a2').text() == 'X' && $('#a3').text() == 'X') {
-    alert('You won!');
-  } else if ($('b1').text == 'X' && $('b2').text == 'X') {
-    return false;
-  }
+    if (a1 == 'X' && a2 == 'X' && a3 == 'X') {
+        alert('You won!');
+        reset();
+    } else if (b1 == 'X' && b2 == 'X' && b3 == 'X') {
+        alert('You won!');
+        reset();
+    } else if (c1 == 'X' && c2 == 'X' && c3 == 'X') {
+        alert('You won!');
+        reset();
+    } else if (a1 == 'X' && b2 == 'X' && c3 == 'X') {
+        alert('You won!');
+        reset();
+    } else if (a3 == 'X' && b2 == 'X' && c1 == 'X') {
+        alert('You won!');
+        reset();
+    // } else {
+    //     winCheck();
+    //     check2();
+    //     drawCheck();
+    }
 }
 
 // Clears the board after a game ends. Resets
 function newGame() {
-  $('#grid.cell').val('');
-} 
+  $('#grid.cell').html('');
+}
 
 });
