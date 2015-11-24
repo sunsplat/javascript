@@ -67,10 +67,10 @@ $(document).ready(function(){
     $('.cell').click(function() {
         if (turn % 2 === 0) {
           $(this).html('X');
-          checkWin('X');
+        //   checkWin('X');
         } else {
           $(this).html('O');
-          checkWin('O');
+        //   checkWin('O');
         }
 
         turn++;
