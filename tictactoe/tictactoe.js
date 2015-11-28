@@ -30,6 +30,18 @@ var cells =
   '#c3'
 ]
 
+//Sets each variable to the text value in the cell
+var a1 = $('#a1').html('');
+var a2 = $('#a2').html('');
+var a3 = $('#a3').html('');
+var b1 = $('#b1').html('');
+var b2 = $('#b2').html('');
+var b3 = $('#b3').html('');
+var c1 = $('#c1').html('');
+var c2 = $('#c2').html('');
+var c3 = $('#c3').html('');
+
+
 // Possible wins
 var wins = [
   [a1, a2, a3],
@@ -42,23 +54,27 @@ var wins = [
   [a3, b3, c3]
 ]
 
-// initial turn
+// initial turn - player
 var turn = 1;
 
 // Store chosen letter X or O in variable 'player'
-// var player = $(this).value();
+var player = 'X';
 
 $(document).ready(function() {
-    newGame();
-    var cell = $('.cell').html();
-    // Switches turns between 'X' and 'O'
-    $('.cell').click(function() {
-        if (cell != '') {
-        // if ($('.cell').value === 'X' || $('.cell').value === 'O') {
-            alert("This square is occupied");
 
-        } else {
-
+    $('button').click(function() {
+      if ($(this).value == 'X') {
+        turn = 1;
+      } else {
+        turn = 0;
+      }
+    });
+    
+     $('.cell').click(function() {
+      
+        // Switches turns between 'X' and 'O'
+        if ($.trim($(this).html()) == '') {
+          
             if (turn % 2 === 0) {
               $(this).html('X');
               checkWin('X');
@@ -68,9 +84,14 @@ $(document).ready(function() {
             }
 
             turn++;
-        }
 
-    });
+        } else {
+          
+          alert("This square is occupied");
+
+        }
+      });
+
 
     // After each move, the checkWin function should run to see if the player or computer has won.
     function checkWin(letter) {
