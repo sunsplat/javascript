@@ -58,15 +58,17 @@ var wins = [
 var turn = 1;
 
 // Store chosen letter X or O in variable 'player'
-var player = 'X';
+var choice = ['X', 'O'];
+var player = '';
+var computer = '';
 
 $(document).ready(function() {
 
     $('button').click(function() {
-      if ($(this).value == 'X') {
-        turn = 1;
+      if ($(this).val() == 'X') {
+        player = choice[0];
       } else {
-        turn = 0;
+        computer = choice[1];
       }
     });
     
@@ -76,11 +78,11 @@ $(document).ready(function() {
         if ($.trim($(this).html()) == '') {
           
             if (turn % 2 === 0) {
-              $(this).html('X');
-              checkWin('X');
+              $(this).html(computer);
+              checkWin(computer);
             } else {
-              $(this).html('O');
-              checkWin('O');
+              $(this).html(player);
+              checkWin(player);
             }
 
             turn++;
@@ -107,7 +109,7 @@ $(document).ready(function() {
         var c2 = $('#c2').text();
         var c3 = $('#c3').text();
 
-        console.log(turn);
+        console.log(letter);
 
         if (a1 == letter && a2 == letter && a3 == letter) {
             alert('You won!');
