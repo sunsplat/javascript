@@ -49,10 +49,12 @@ var turn = 1;
 // var player = $(this).value();
 
 $(document).ready(function() {
-
+    newGame();
+    var cell = $('.cell').html();
     // Switches turns between 'X' and 'O'
     $('.cell').click(function() {
-        if ($('.cell').text == 'X' || $('.cell').text == 'O') {
+        if (cell != '') {
+        // if ($('.cell').value === 'X' || $('.cell').value === 'O') {
             alert("This square is occupied");
 
         } else {
