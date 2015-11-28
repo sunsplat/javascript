@@ -59,19 +59,11 @@ var xTurn = true;
 // var player = $(this).value();
 
 $(document).ready(function() {
-    // newGame();
-    // var cell = $('.cell').html();
-    // Switches turns between 'X' and 'O'
-
-
-
+    
     $('.cell').click(function() {
-        // if ($('.cell').text == 'X' || $('.cell').text == 'O') {
-        // if ($(this).html() == '') {
-        if ($(this).html() === 'X' || $('.cell').html() === 'O') {
-            alert("This square is occupied");
-            
-        } else {
+      
+        // Switches turns between 'X' and 'O'
+        if ($.trim($(this).html()) == '') {
           
             if (turn % 2 === 0) {
               $(this).html('X');
@@ -82,6 +74,11 @@ $(document).ready(function() {
             }
 
             turn++;
+
+        } else {
+          
+          alert("This square is occupied");
+
         }
       });
 
