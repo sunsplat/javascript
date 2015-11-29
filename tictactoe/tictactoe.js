@@ -55,27 +55,30 @@ var wins = [
 
 // initial turn - player
 var turn = 1;
-var xTurn = true;
-// Store chosen letter X or O in variable 'player'
+// When computer can move: true
+var move = false;
+// Storing symbols in array
 var choice = ['X', 'O'];
+// Store chosen symbol X or O in variable 'player' and 'computer'
 var player = '';
 var computer = '';
-// var turn = false;
 
 $(document).ready(function() {
 
+    // Prompt user to choose letter, then hide prompt
     $('button').click(function() {
         $('.prompt').hide();
         if ($(this).val() == 'X') {
           player = choice[0];
           computer = choice[1];
-          console.log(computer);
         } else {
           computer = choice[0];
           player = choice[1];
         }
     });
 
+    // For two player game
+    //
     // $('button').click(function() {
     //   if ($(this).val() == 'X') {
     //     player = choice[0];
@@ -94,12 +97,12 @@ $(document).ready(function() {
         if ($.trim($(this).html()) == '') {
           
             if (turn % 2 === 0) {
-              $(this).html(computer);
-              // if (computerMove(computer)) {
+              move = true;
               // $(this).html(computer);
-            // }
+              if (move) {
+                  computerMove(computer);
+              }
               checkWin(computer);
-
             } else {
               $(this).html(player);
               checkWin(player);
@@ -109,7 +112,7 @@ $(document).ready(function() {
 
         } else {
           
-          alert("This square is occupied");
+          alert("This square is occupied. Choose another.");
 
         }
       });
@@ -171,28 +174,28 @@ $(document).ready(function() {
 
     // Where should the computer move? How should it move?
     function computerMove(computer) {
-        var a1 = $('#a1').html();
-        var a2 = $('#a2').html();
-        var a3 = $('#a3').html();
-        var b1 = $('#b1').html();
-        var b2 = $('#b2').html();
-        var b3 = $('#b3').html();
-        var c1 = $('#c1').html();
-        var c2 = $('#c2').html();
-        var c3 = $('#c3').html();
+        // var a1 = $('#a1').html();
+        // var a2 = $('#a2').html();
+        // var a3 = $('#a3').html();
+        // var b1 = $('#b1').html();
+        // var b2 = $('#b2').html();
+        // var b3 = $('#b3').html();
+        // var c1 = $('#c1').html();
+        // var c2 = $('#c2').html();
+        // var c3 = $('#c3').html();
 
       if (a1 == a2 || b3 == c3 || c1 == b2) {
-        return true; //$('#a3').html(computer);
+        document.write($('#a3').html(computer));
       } else if (a1 == a3 || b2 == c2) {
-        return true;
+        return $('#a2').html(computer);
       } else if (a2 == a3 || b1 == c1 || c3 == b2) {
-        return true; //$('#a1').html(computer);
+        return $('#a1').html(computer);
       } else if (a3 == c3 || b1 == b2) {
         return true; // $('#b3').html(computer);
       } else if (b1 == b3 || a1 == c3 || a3 == c1 || b2 =='') {
         return true; //$('#b2').html(computer);
       } else if (a1 == '' || a3 == '' || c1 == '' || c3 == '') {
-        return true; //$('#a1').html(computer);
+        document.write($('#a1').html(computer));
       }
     }
 
