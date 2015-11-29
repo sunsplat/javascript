@@ -11,11 +11,19 @@
     <script src="tictactoe.js"></script>
 
   </head>
+
   <body>
+
     <div class="header">
-        <h1>Play Tic Tac Toe with me!</h1>
+        <h1>Play Tic Tac Toe!</h1>
     </div>
-    <div class="container-fluid">
+
+    <div class="prompt">
+        <button class="btn btn-warning" value="X" id="X-btn">Choose X</button>
+        <button class="btn btn-warning" value="O" id="O-btn">Choose O</button>
+    </div>
+
+    <div class="container-fluid" id="grid">
       <div class="grid">
         <div class="row top-row">
           <div class="col-xs-4 cell" id="a1">
@@ -29,7 +37,6 @@
           <div class="col-xs-4 cell" id="b1">
           </div>
           <div class="col-xs-4 cell middle-column" id="b2">
-
           </div>
           <div class="col-xs-4 cell" id="b3">
           </div>

@@ -10,19 +10,48 @@ html {
   text-align: center;
 }
 
-.grid {
+.prompt {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 1;
+  height: 70px;
+  width: 300px;
+  /*background-color: ;*/
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  animation-name: appear;
+  animation-duration: 0.5s;
+}
+
+button {
+  height: 50px;
+  width: 100px;
+  margin: 10px 20px;
+}
+
+.center {
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+div.grid {
   width: 500px;
   margin: auto auto;
   color: #fff;
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 20px 20px 10px 10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
 
 .grid div {
   text-align: center;
+  background-color: #330033;
 }
 
 .row {
-  background-color: #330033;
-  height: 25vh;
+  height: 20vh;
   border: 1px solid #fff;
 }
 

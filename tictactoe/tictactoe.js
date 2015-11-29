@@ -31,15 +31,16 @@ var cells =
 ]
 
 //Sets each variable to the text value in the cell
-        var a1 = $('#a1').html('');
-        var a2 = $('#a2').html('');
-        var a3 = $('#a3').html('');
-        var b1 = $('#b1').html('');
-        var b2 = $('#b2').html('');
-        var b3 = $('#b3').html('');
-        var c1 = $('#c1').html('');
-        var c2 = $('#c2').html('');
-        var c3 = $('#c3').html('');
+var a1 = $('#a1').html('');
+var a2 = $('#a2').html('');
+var a3 = $('#a3').html('');
+var b1 = $('#b1').html('');
+var b2 = $('#b2').html('');
+var b3 = $('#b3').html('');
+var c1 = $('#c1').html('');
+var c2 = $('#c2').html('');
+var c3 = $('#c3').html('');
+
 // Possible wins
 var wins = [
   [a1, a2, a3],
@@ -52,25 +53,56 @@ var wins = [
   [a3, b3, c3]
 ]
 
-// initial turn
+// initial turn - player
 var turn = 1;
 var xTurn = true;
 // Store chosen letter X or O in variable 'player'
-// var player = $(this).value();
+var choice = ['X', 'O'];
+var player = '';
+var computer = '';
+// var turn = false;
 
 $(document).ready(function() {
+
+    $('button').click(function() {
+        $('.prompt').hide();
+        if ($(this).val() == 'X') {
+          player = choice[0];
+          computer = choice[1];
+          console.log(computer);
+        } else {
+          computer = choice[0];
+          player = choice[1];
+        }
+    });
+
+    // $('button').click(function() {
+    //   if ($(this).val() == 'X') {
+    //     player = choice[0];
+    //     computer = choice[1];
+    //     return (player, computer);
+    //   } else {
+    //     computer = choice[0];
+    //     player = choice[1];
+    //     return (player, computer);
+    //   }
+    // });
     
-    $('.cell').click(function() {
+     $('.cell').click(function() {
       
         // Switches turns between 'X' and 'O'
         if ($.trim($(this).html()) == '') {
           
             if (turn % 2 === 0) {
-              $(this).html('X');
-              checkWin('X');
+              $(this).html(computer);
+              // if (computerMove(computer)) {
+              // $(this).html(computer);
+            // }
+              checkWin(computer);
+
             } else {
-              $(this).html('O');
-              checkWin('O');
+              $(this).html(player);
+              checkWin(player);
             }
 
             turn++;
@@ -83,38 +115,36 @@ $(document).ready(function() {
       });
 
 
-    function checkCell(cell) {
-    // function that is called whenever a button is clicked.
+    // function checkCell(cell) {
+    // // function that is called whenever a button is clicked.
 
-        var value = cell.text;
-        if(value != 'X' && value != 'O') {
-            if(xTurn) {
-                cell.text = 'X';
-                xTurn = false;
-            } else {
-                cell.value = 'O';
-                xTurn = true;
-            }
-        } else {
-            alert('This square is occupied');
-        }
-    }
+    //     var value = cell.text;
+    //     if(value != 'X' && value != 'O') {
+    //         if(xTurn) {
+    //             cell.text = 'X';
+    //             xTurn = false;
+    //         } else {
+    //             cell.value = 'O';
+    //             xTurn = true;
+    //         }
+    //     } else {
+    //         alert('This square is occupied');
+    //     }
+    // }
 
     // After each move, the checkWin function should run to see if the player or computer has won.
     function checkWin(letter) {
 
         //Sets each variable to the text value in the cell
-        var a1 = $('#a1').text();
-        var a2 = $('#a2').text();
-        var a3 = $('#a3').text();
-        var b1 = $('#b1').text();
-        var b2 = $('#b2').text();
-        var b3 = $('#b3').text();
-        var c1 = $('#c1').text();
-        var c2 = $('#c2').text();
-        var c3 = $('#c3').text();
-
-        console.log(turn);
+        var a1 = $('#a1').html();
+        var a2 = $('#a2').html();
+        var a3 = $('#a3').html();
+        var b1 = $('#b1').html();
+        var b2 = $('#b2').html();
+        var b3 = $('#b3').html();
+        var c1 = $('#c1').html();
+        var c2 = $('#c2').html();
+        var c3 = $('#c3').html();
 
         if (a1 == letter && a2 == letter && a3 == letter) {
             alert('You won!');
@@ -140,14 +170,29 @@ $(document).ready(function() {
     //save moves somewhere
 
     // Where should the computer move? How should it move?
-    function computerMove(value) {
-      if (value) {
-        $('#b2').html('O');
-      } else if (a1 !== "X" || a1 !== "O") {
-        $('#a1').html('O');
-      } else if (a2 !== "X" || a2 !== "O") {
-        $('#a2').html('O');
+    function computerMove(computer) {
+        var a1 = $('#a1').html();
+        var a2 = $('#a2').html();
+        var a3 = $('#a3').html();
+        var b1 = $('#b1').html();
+        var b2 = $('#b2').html();
+        var b3 = $('#b3').html();
+        var c1 = $('#c1').html();
+        var c2 = $('#c2').html();
+        var c3 = $('#c3').html();
 
+      if (a1 == a2 || b3 == c3 || c1 == b2) {
+        return true; //$('#a3').html(computer);
+      } else if (a1 == a3 || b2 == c2) {
+        return true;
+      } else if (a2 == a3 || b1 == c1 || c3 == b2) {
+        return true; //$('#a1').html(computer);
+      } else if (a3 == c3 || b1 == b2) {
+        return true; // $('#b3').html(computer);
+      } else if (b1 == b3 || a1 == c3 || a3 == c1 || b2 =='') {
+        return true; //$('#b2').html(computer);
+      } else if (a1 == '' || a3 == '' || c1 == '' || c3 == '') {
+        return true; //$('#a1').html(computer);
       }
     }
 
@@ -155,6 +200,16 @@ $(document).ready(function() {
     function newGame() {
       $('.cell').html('');
       turn = 0;
+      var player = '';
+      var computer = '';
+      $('.prompt').show();
+    }
+
+    function resetBoard() {
+      turn = 0;
+      $('.cell').removeClass('used');
+      $('#game-result').empty();
+      computerMove('#B2');
     }
 
 });
