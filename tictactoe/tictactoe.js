@@ -55,18 +55,17 @@ var wins = [
 
 // initial turn - player
 var turn = 1;
-<<<<<<< Updated upstream
 var xTurn = true;
-// Store chosen letter X or O in variable 'player'
-=======
+
 // When computer can move: true
 // var move = false;
 
 // Storing computer moves
 // var moves = {a1: 0; a2: 0; a3, b1, b2, b3};
+
 // Storing symbols in array
->>>>>>> Stashed changes
 var choice = ['X', 'O'];
+// Store chosen letter X or O in variable 'player'
 var player = '';
 var computer = '';
 // var turn = false;
@@ -120,17 +119,13 @@ $(document).ready(function() {
         if (!$(this).hasClass('used')) {
           
             if (turn % 2 === 0) {
-<<<<<<< Updated upstream
               $(this).html(computer);
               // if (computerMove(computer)) {
               // $(this).html(computer);
             // }
-=======
-              // $(this).html(computer);
               $(this).addClass('used');
               // computerMove();
               // setTimeout(computerMove(), 100);
->>>>>>> Stashed changes
               checkWin(computer);
 
             } else {
