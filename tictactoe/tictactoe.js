@@ -31,15 +31,15 @@ var cells =
 ];
 
 //Sets each variable to the text value in the cell
-var a1 = $('#a1').html('');
-var a2 = $('#a2').html('');
-var a3 = $('#a3').html('');
-var b1 = $('#b1').html('');
-var b2 = $('#b2').html('');
-var b3 = $('#b3').html('');
-var c1 = $('#c1').html('');
-var c2 = $('#c2').html('');
-var c3 = $('#c3').html('');
+var a1 = $('#0').html('');
+var a2 = $('#1').html('');
+var a3 = $('#2').html('');
+var b1 = $('#3').html('');
+var b2 = $('#4').html('');
+var b3 = $('#5').html('');
+var c1 = $('#6').html('');
+var c2 = $('#7').html('');
+var c3 = $('#8').html('');
 
 // Possible wins
 var wins = [
@@ -119,11 +119,11 @@ $(document).ready(function() {
         if (!$(this).hasClass('used')) {
           
             if (turn % 2 === 0) {
+              $(this).addClass('used');
               $(this).html(computer);
               // if (computerMove(computer)) {
               // $(this).html(computer);
             // }
-              $(this).addClass('used');
               // computerMove();
               // setTimeout(computerMove(), 100);
               checkWin(computer);
@@ -131,7 +131,6 @@ $(document).ready(function() {
             } else {
               $(this).addClass('used');
               $(this).html(player);
-
               checkWin(player);
             }
 
@@ -149,15 +148,15 @@ $(document).ready(function() {
     function checkWin(letter) {
 
         //Sets each variable to the text value in the cell
-        a1 = $('#a1').html();
-        a2 = $('#a2').html();
-        a3 = $('#a3').html();
-        b1 = $('#b1').html();
-        b2 = $('#b2').html();
-        b3 = $('#b3').html();
-        c1 = $('#c1').html();
-        c2 = $('#c2').html();
-        c3 = $('#c3').html();
+        a1 = $('#0').html();
+        a2 = $('#1').html();
+        a3 = $('#2').html();
+        b1 = $('#3').html();
+        b2 = $('#4').html();
+        b3 = $('#5').html();
+        c1 = $('#6').html();
+        c2 = $('#7').html();
+        c3 = $('#8').html();
 
         if (a1 == letter && a2 == letter && a3 == letter) {
             alert('You won!');
@@ -180,11 +179,11 @@ $(document).ready(function() {
         }
 
         // var move = computerAI();
-        if (letter == player) {
-          computerMove();
-        } else {
-          return;
-        }
+        // if (letter == player) {
+        //   computerMove();
+        // } else {
+        //   return;
+        // }
     }
 
     //save moves somewhere
@@ -197,7 +196,7 @@ $(document).ready(function() {
         computerMove();
       } else {
         cells[random].trigger('click');
-      };
+      }
     }
 
     // Clears the board after a game ends. Resets turn to start at 0.
