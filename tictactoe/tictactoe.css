@@ -13,16 +13,18 @@ html {
 .prompt {
   position: fixed;
   left: 50%;
+  top: 30%;
   transform: translate(-50%, 0);
   z-index: 1;
-  height: 70px;
-  width: 300px;
-  /*background-color: ;*/
+  height: 250px;
+  width: 500px;
+  background-color: #fff;
   color: white;
   text-align: center;
   border-radius: 10px;
   animation-name: appear;
   animation-duration: 0.5s;
+  padding-top: 50px;
 }
 
 button {

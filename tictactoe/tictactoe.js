@@ -18,17 +18,17 @@
 
 // Create a hash?
 var cells =
-[
-  '#a1',
-  '#a2',
-  '#a3',
-  '#b1',
-  '#b2',
-  '#b3',
-  '#c1',
-  '#c2',
-  '#c3'
-]
+[       
+    $("#0"),
+    $("#1"),
+    $("#2"),
+    $("#3"),
+    $("#4"),
+    $("#5"),
+    $("#6"),
+    $("#7"),
+    $("#8")
+];
 
 //Sets each variable to the text value in the cell
 var a1 = $('#a1').html('');
@@ -55,12 +55,23 @@ var wins = [
 
 // initial turn - player
 var turn = 1;
+<<<<<<< Updated upstream
 var xTurn = true;
 // Store chosen letter X or O in variable 'player'
+=======
+// When computer can move: true
+// var move = false;
+
+// Storing computer moves
+// var moves = {a1: 0; a2: 0; a3, b1, b2, b3};
+// Storing symbols in array
+>>>>>>> Stashed changes
 var choice = ['X', 'O'];
 var player = '';
 var computer = '';
 // var turn = false;
+
+// var chooseCell = '#a' + getRandomInt(0,2) + '-' + getRandomInt(0,2);
 
 $(document).ready(function() {
 
@@ -88,20 +99,44 @@ $(document).ready(function() {
     //   }
     // });
     
-     $('.cell').click(function() {
+    // $('.cell').click(function() {
+    //     // Switches turns between 'X' and 'O'
+    //     if (move && !$(this).hasClass('used')) {
+    //       chooseCell(cell, player);
+    //     }
+
+    // });
+
+    $('.cell').click(checkCell);
+
+    // function chooseCell(cell, player) {
+    //     $(this).addClass('used');
+    //     $(this).html(player);
+    // }
+
+    function checkCell() {
       
         // Switches turns between 'X' and 'O'
-        if ($.trim($(this).html()) == '') {
+        if (!$(this).hasClass('used')) {
           
             if (turn % 2 === 0) {
+<<<<<<< Updated upstream
               $(this).html(computer);
               // if (computerMove(computer)) {
               // $(this).html(computer);
             // }
+=======
+              // $(this).html(computer);
+              $(this).addClass('used');
+              // computerMove();
+              // setTimeout(computerMove(), 100);
+>>>>>>> Stashed changes
               checkWin(computer);
 
             } else {
+              $(this).addClass('used');
               $(this).html(player);
+
               checkWin(player);
             }
 
@@ -112,39 +147,22 @@ $(document).ready(function() {
           alert("This square is occupied");
 
         }
-      });
 
-
-    // function checkCell(cell) {
-    // // function that is called whenever a button is clicked.
-
-    //     var value = cell.text;
-    //     if(value != 'X' && value != 'O') {
-    //         if(xTurn) {
-    //             cell.text = 'X';
-    //             xTurn = false;
-    //         } else {
-    //             cell.value = 'O';
-    //             xTurn = true;
-    //         }
-    //     } else {
-    //         alert('This square is occupied');
-    //     }
-    // }
+      };
 
     // After each move, the checkWin function should run to see if the player or computer has won.
     function checkWin(letter) {
 
         //Sets each variable to the text value in the cell
-        var a1 = $('#a1').html();
-        var a2 = $('#a2').html();
-        var a3 = $('#a3').html();
-        var b1 = $('#b1').html();
-        var b2 = $('#b2').html();
-        var b3 = $('#b3').html();
-        var c1 = $('#c1').html();
-        var c2 = $('#c2').html();
-        var c3 = $('#c3').html();
+        a1 = $('#a1').html();
+        a2 = $('#a2').html();
+        a3 = $('#a3').html();
+        b1 = $('#b1').html();
+        b2 = $('#b2').html();
+        b3 = $('#b3').html();
+        c1 = $('#c1').html();
+        c2 = $('#c2').html();
+        c3 = $('#c3').html();
 
         if (a1 == letter && a2 == letter && a3 == letter) {
             alert('You won!');
@@ -165,51 +183,36 @@ $(document).ready(function() {
             alert("It's a draw");
             newGame();
         }
+
+        // var move = computerAI();
+        if (letter == player) {
+          computerMove();
+        } else {
+          return;
+        }
     }
 
     //save moves somewhere
 
-    // Where should the computer move? How should it move?
-    function computerMove(computer) {
-        var a1 = $('#a1').html();
-        var a2 = $('#a2').html();
-        var a3 = $('#a3').html();
-        var b1 = $('#b1').html();
-        var b2 = $('#b2').html();
-        var b3 = $('#b3').html();
-        var c1 = $('#c1').html();
-        var c2 = $('#c2').html();
-        var c3 = $('#c3').html();
-
-      if (a1 == a2 || b3 == c3 || c1 == b2) {
-        return true; //$('#a3').html(computer);
-      } else if (a1 == a3 || b2 == c2) {
-        return true;
-      } else if (a2 == a3 || b1 == c1 || c3 == b2) {
-        return true; //$('#a1').html(computer);
-      } else if (a3 == c3 || b1 == b2) {
-        return true; // $('#b3').html(computer);
-      } else if (b1 == b3 || a1 == c3 || a3 == c1 || b2 =='') {
-        return true; //$('#b2').html(computer);
-      } else if (a1 == '' || a3 == '' || c1 == '' || c3 == '') {
-        return true; //$('#a1').html(computer);
-      }
+    // Where should the computer move? Random for now.
+    function computerMove() {
+      var random = Math.floor(Math.random() * 8);
+      console.log(random);
+      if (cells[random].hasClass('used')) {
+        computerMove();
+      } else {
+        cells[random].trigger('click');
+      };
     }
 
     // Clears the board after a game ends. Resets turn to start at 0.
     function newGame() {
       $('.cell').html('');
+      $('.cell').removeClass('used');
       turn = 0;
       var player = '';
       var computer = '';
       $('.prompt').show();
-    }
-
-    function resetBoard() {
-      turn = 0;
-      $('.cell').removeClass('used');
-      $('#game-result').empty();
-      computerMove('#B2');
     }
 
 });
