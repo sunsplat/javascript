@@ -17,19 +17,25 @@
  */
 
 // Create a hash?
-var cells =
-[       
-    $("#0"),
-    $("#1"),
-    $("#2"),
-    $("#3"),
-    $("#4"),
-    $("#5"),
-    $("#6"),
-    $("#7"),
-    $("#8")
-];
+// var cells =
+// [       
+//     $("#0"),
+//     $("#1"),
+//     $("#2"),
+//     $("#3"),
+//     $("#4"),
+//     $("#5"),
+//     $("#6"),
+//     $("#7"),
+//     $("#8")
+// ];
 
+var cells = [];
+for (var i=0; i<9; i++) {
+  cells[i] = $('#' + i);
+}
+
+console.log(cells);
 //Sets each variable to the text value in the cell
 var a1 = $('#0').html('');
 var a2 = $('#1').html('');
@@ -53,24 +59,33 @@ var wins = [
   [a3, b3, c3]
 ]
 
-// initial turn - player
+var wins1 = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 4, 8],
+  [2, 4, 7],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8]
+]
+
+// initial turn is player
 var turn = 1;
 var xTurn = true;
 
 // When computer can move: true
 // var move = false;
 
-// Storing computer moves
-// var moves = {a1: 0; a2: 0; a3, b1, b2, b3};
+// Storing computer and player moves based on index
+var moves = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
 // Storing symbols in array
 var choice = ['X', 'O'];
 // Store chosen letter X or O in variable 'player'
 var player = '';
 var computer = '';
-// var turn = false;
-
-// var chooseCell = '#a' + getRandomInt(0,2) + '-' + getRandomInt(0,2);
+var turn = true;
 
 $(document).ready(function() {
 
@@ -86,63 +101,59 @@ $(document).ready(function() {
         }
     });
 
-    // $('button').click(function() {
-    //   if ($(this).val() == 'X') {
-    //     player = choice[0];
-    //     computer = choice[1];
-    //     return (player, computer);
-    //   } else {
-    //     computer = choice[0];
-    //     player = choice[1];
-    //     return (player, computer);
-    //   }
-    // });
-    
-    // $('.cell').click(function() {
+    var computerSpot = '#' + getRandomInt(0,8);
+
+    $('.cell').click(function() {
+      if (turn) {
+        console.log(computerSpot);
+        if ($(this).hasClass('used')) {
+          alert("This square is taken");
+        } else {
+          $(this).html(player);
+          $(this).addClass('used');
+          checkWin(player);
+          turn = false;
+        }
+      }
+
+      if (!$(computerSpot).hasClass('used')) {
+        computerSpot = '#' + getRandomInt(0,8);
+      }
+
+      setTimeout(function(){
+        console.log(computer);
+        $(computerSpot).html(computer);
+        $(computerSpot).addClass('used');
+        checkWin(computer);
+        turn = true;      
+      },300);
+  });
+
+
+    // function checkCell() {
+      
     //     // Switches turns between 'X' and 'O'
-    //     if (move && !$(this).hasClass('used')) {
-    //       chooseCell(cell, player);
+    //     if (!$(this).hasClass('used')) {
+          
+    //         if (turn % 2 === 0) {
+
+    //           computerMove(computer);
+
+    //         } else {
+    //           $(this).addClass('used');
+    //           $(this).html(player);
+    //           moves[this.id] = player;
+    //           console.log(moves[this.id]);
+    //           checkWin(player);
+    //         }
+    //         turn++;
+    //     } else {
+          
+    //       alert("This square is occupied");
+
     //     }
 
-    // });
-
-    $('.cell').click(checkCell);
-
-    // function chooseCell(cell, player) {
-    //     $(this).addClass('used');
-    //     $(this).html(player);
-    // }
-
-    function checkCell() {
-      
-        // Switches turns between 'X' and 'O'
-        if (!$(this).hasClass('used')) {
-          
-            if (turn % 2 === 0) {
-              $(this).addClass('used');
-              $(this).html(computer);
-              // if (computerMove(computer)) {
-              // $(this).html(computer);
-            // }
-              // computerMove();
-              // setTimeout(computerMove(), 100);
-              checkWin(computer);
-
-            } else {
-              $(this).addClass('used');
-              $(this).html(player);
-              checkWin(player);
-            }
-
-            turn++;
-
-        } else {
-          
-          alert("This square is occupied");
-
-        }
-
-      };
+    //   };
 
     // After each move, the checkWin function should run to see if the player or computer has won.
     function checkWin(letter) {
@@ -176,37 +187,53 @@ $(document).ready(function() {
         } else if (turn == 9) {
             alert("It's a draw");
             newGame();
-        }
-
-        // var move = computerAI();
-        // if (letter == player) {
-        //   computerMove();
-        // } else {
-        //   return;
+        } //else {
+        //   return false;
         // }
     }
 
-    //save moves somewhere
+
+    // function computerMove() {}
+      //search through grid and find an empty cell
+      //load wins into function to search through
+      // if there is an array that has two of the same symbol, fill third one
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
 
     // Where should the computer move? Random for now.
-    function computerMove() {
-      var random = Math.floor(Math.random() * 8);
-      console.log(random);
-      if (cells[random].hasClass('used')) {
-        computerMove();
-      } else {
-        cells[random].trigger('click');
-      }
-    }
+    //use id of where player last moved
+    // function computerMove(computer) {
+    //   cells1 = [1, 2, 3, 4, 5, 6, 7, 8];
+
+    //   // var random = Math.floor(Math.random() * 8);
+    //   var random = cells1[Math.floor(Math.random() * cells.length)];
+    //   // if (cells[random].val() != '') {
+        
+    //   // } else {
+    //     $('#' + random).trigger('click');
+    //     console.log($(random));
+    //     $(random).html(computer);
+    //     $(random).addClass('used');
+    //     // $(this).html(computer);
+    //     moves[random.id] = computer;
+    //     console.log(moves);
+    //     checkWin(computer);
+    //   // }
+    // }
 
     // Clears the board after a game ends. Resets turn to start at 0.
     function newGame() {
       $('.cell').html('');
       $('.cell').removeClass('used');
+      moves = [0, 1, 2, 3, 4, 5, 6, 7, 8];
       turn = 0;
-      var player = '';
-      var computer = '';
+      player = '';
+      computer = '';
       $('.prompt').show();
     }
 
 });
+
