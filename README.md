@@ -4,7 +4,9 @@ Check it out my [about me](http://sunsplat.github.io/javascript/main.html).
 
 Check out my [Tic Tac Toe](http://sunsplat.github.io/javascript/tictactoe/tictactoe.html) game.
 
-Some JavaScript Resource:  
+---
+
+**Some JavaScript Resources:**  
 [SuperheroJS](http://superherojs.com/) - Collection of great JS resources  
 [Eloquent JavaScript](http://eloquentjavascript.net/)  
 [Codecademy Glossary](https://www.codecademy.com/articles/glossary-javascript)  
