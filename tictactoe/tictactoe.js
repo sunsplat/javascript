@@ -105,7 +105,6 @@ $(document).ready(function() {
 
     $('.cell').click(function() {
       if (turn) {
-        console.log(computerSpot);
         if ($(this).hasClass('used')) {
           alert("This square is taken");
         } else {
@@ -118,10 +117,10 @@ $(document).ready(function() {
 
       if (!$(computerSpot).hasClass('used')) {
         computerSpot = '#' + getRandomInt(0,8);
+        console.log(computerSpot);
       }
 
       setTimeout(function(){
-        console.log(computer);
         $(computerSpot).html(computer);
         $(computerSpot).addClass('used');
         checkWin(computer);
