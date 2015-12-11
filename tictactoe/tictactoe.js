@@ -115,7 +115,7 @@ $(document).ready(function() {
         }
       }
 
-      if (!$(computerSpot).hasClass('used')) {
+      while (!$(computerSpot).hasClass('used')) {
         computerSpot = '#' + getRandomInt(0,8);
         console.log(computerSpot);
       }
